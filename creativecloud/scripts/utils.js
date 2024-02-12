@@ -55,7 +55,7 @@ function getDecorateAreaFn() {
     const { getConfig } = await import(`${getLibs()}/utils/utils.js`);
     const resetAttributeBase = (tag, attr) => {
       area.querySelectorAll(`${tag}[${attr}^="./media_"]`).forEach((el) => {
-        el[attr] = `${new URL(`${getConfig().codeRoot}${el.getAttribute(attr).substring(1)}`, window.location).href}`;
+        el[attr] = `${new URL(`${getConfig().contentRoot}${el.getAttribute(attr).substring(1)}`, window.location).href}`;
       });
     };
     resetAttributeBase('img', 'src');
