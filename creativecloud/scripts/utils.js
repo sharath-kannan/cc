@@ -51,6 +51,17 @@ export { createTag, localizeLink };
 function getDecorateAreaFn() {
   let lcpImgSet = false;
 
+  (function replaceDotMedia() {
+    const { getConfig } = await import(`${getLibs()}/utils/utils.js`);
+    const resetAttributeBase = (tag, attr) => {
+      area.querySelectorAll(`${tag}[${attr}^="./media_"]`).forEach((el) => {
+        el[attr] = `${new URL(`${getConfig().codeRoot}${el.getAttribute(attr).substring(1)}`, window.location).href}`;
+      });
+    };
+    resetAttributeBase('img', 'src');
+    resetAttributeBase('source', 'srcset');
+  }());
+
   // Load LCP image immediately
   const eagerLoad = (lcpImg) => {
     lcpImg?.setAttribute('loading', 'eager');
