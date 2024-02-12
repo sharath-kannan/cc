@@ -51,7 +51,7 @@ export { createTag, localizeLink };
 function getDecorateAreaFn() {
   let lcpImgSet = false;
 
-  (async function replaceDotMedia() {
+  (async function replaceDotMedia(area = document) {
     const { getConfig } = await import(`${getLibs()}/utils/utils.js`);
     const resetAttributeBase = (tag, attr) => {
       area.querySelectorAll(`${tag}[${attr}^="./media_"]`).forEach((el) => {
