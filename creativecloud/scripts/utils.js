@@ -54,7 +54,8 @@ function getDecorateAreaFn() {
   (async function replaceDotMedia(area = document) {
     console.log('1 '+getLibs());
     const { getConfig } = await import(`${getLibs()}/utils/utils.js`);
-    console.log('3 '+getConfig().imsClientId);
+    const config = getConfig();
+    console.log('3 '+config.imsClientId);
     const resetAttributeBase = (tag, attr) => {
       area.querySelectorAll(`${tag}[${attr}^="./media_"]`).forEach((el) => {
         el[attr] = `${new URL(`${getConfig().contentRoot}${el.getAttribute(attr).substring(1)}`, window.location).href}`;
@@ -74,7 +75,6 @@ function getDecorateAreaFn() {
   async function loadLCPImage(area = document, { fragmentLink = null } = {}) {
     const firstBlock = area.querySelector('body > main > div > div');
     let fgDivs = null;
-    console.log('2 '+getLibs());
     switch (true) {
       case firstBlock?.classList.contains('changebg'): {
         firstBlock.querySelector(':scope > div:nth-child(1)').querySelectorAll('img').forEach(eagerLoad);
