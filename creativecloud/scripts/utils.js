@@ -53,7 +53,7 @@ function getDecorateAreaFn() {
 
   (async function replaceDotMedia(area = document) {
     const { getConfig } = await import(`${getLibs()}/utils/utils.js`);
-    console.log(getConfig().prodDomains[0]);
+    console.log('Check '+getConfig().prodDomains[0]);
     const resetAttributeBase = (tag, attr) => {
       area.querySelectorAll(`${tag}[${attr}^="./media_"]`).forEach((el) => {
         el[attr] = `${new URL(`${getConfig().contentRoot}${el.getAttribute(attr).substring(1)}`, window.location).href}`;
