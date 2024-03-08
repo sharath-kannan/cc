@@ -59,7 +59,7 @@ function getDecorateAreaFn() {
   };
 
   
-  (async function replaceDotMedia(area = document) {
+  async function replaceDotMedia(area = document) {
     const { getConfig } = await import(`${getLibs()}/utils/utils.js`);
     const resetAttributeBase = (tag, attr) => {
       area.querySelectorAll(`${tag}[${attr}^="./media_"]`).forEach((el) => {
@@ -68,9 +68,10 @@ function getDecorateAreaFn() {
     };
     resetAttributeBase('img', 'src');
     resetAttributeBase('source', 'srcset');
-  }());
+  };
 
   async function loadLCPImage(area = document, { fragmentLink = null } = {}) {
+    replaceDotMedia(area);
     const firstBlock = area.querySelector('body > main > div > div');
     let fgDivs = null;
     switch (true) {
