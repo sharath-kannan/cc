@@ -58,6 +58,18 @@ function getDecorateAreaFn() {
     if (lcpImg) lcpImgSet = true;
   };
 
+  
+  (async function replaceDotMedia(area = document) {
+    const { getConfig } = await import(`${getLibs()}/utils/utils.js`);
+    const resetAttributeBase = (tag, attr) => {
+      area.querySelectorAll(`${tag}[${attr}^="./media_"]`).forEach((el) => {
+        el[attr] = `${new URL(`${getConfig().contentRoot}${el.getAttribute(attr).substring(1)}`, window.location).href}`;
+      });
+    };
+    resetAttributeBase('img', 'src');
+    resetAttributeBase('source', 'srcset');
+  }());
+
   async function loadLCPImage(area = document, { fragmentLink = null } = {}) {
     const firstBlock = area.querySelector('body > main > div > div');
     let fgDivs = null;
