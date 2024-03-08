@@ -45,7 +45,7 @@ export const [setLibs, getLibs] = (() => {
 
 const miloLibs = setLibs('/libs');
 
-const { createTag, localizeLink } = await import(`${miloLibs}/utils/utils.js`);
+const { createTag, localizeLink, getConfig } = await import(`${miloLibs}/utils/utils.js`);
 export { createTag, localizeLink };
 
 function getDecorateAreaFn() {
@@ -57,10 +57,8 @@ function getDecorateAreaFn() {
     lcpImg?.setAttribute('fetchpriority', 'high');
     if (lcpImg) lcpImgSet = true;
   };
-
   
   async function replaceDotMedia(area = document) {
-    const { getConfig } = await import(`${getLibs()}/utils/utils.js`);
     const resetAttributeBase = (tag, attr) => {
       area.querySelectorAll(`${tag}[${attr}^="./media_"]`).forEach((el) => {
         el[attr] = `${new URL(`${getConfig().contentRoot}${el.getAttribute(attr).substring(1)}`, window.location).href}`;
