@@ -160,21 +160,9 @@ const CONFIG = {
  * ------------------------------------------------------------
  */
 
-
-(async function replaceDotMedia(area = document) {
-  const resetAttributeBase = (tag, attr) => {
-    area.querySelectorAll(`${tag}[${attr}^="./media_"]`).forEach((el) => {
-      el[attr] = `${new URL(`${CONFIG.contentRoot}${el.getAttribute(attr).substring(1)}`, window.location).href}`;
-    });
-  };
-  resetAttributeBase('img', 'src');
-  resetAttributeBase('source', 'srcset');
-}());
-
 const miloLibs = setLibs(LIBS);
 const { loadArea, setConfig, loadLana } = await import(`${miloLibs}/utils/utils.js`);
 setConfig({ ...CONFIG, miloLibs });
-replaceDotMedia();
 decorateArea();
 
 (function loadStyles() {
