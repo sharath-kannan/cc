@@ -44,7 +44,7 @@ const { createTag } = await import(`${miloLibs}/utils/utils.js`);
 function getDecoratedBannerRight(children) {
   const openText = children[3].textContent.trim();
   const appBannerRight = createTag('div', { class: 'app-banner-right' });
-  const openButton = createTag('button', { class: 'app-banner-button', role: 'text', 'aria-label': openText }, openText);
+  const openButton = createTag('button', { class: 'app-banner-button', role: 'text', 'aria-label': openText, 'daa-ll': 'open' }, openText);
   appBannerRight.addEventListener('click', openLink);
   appBannerRight.append(openButton);
   return appBannerRight;
