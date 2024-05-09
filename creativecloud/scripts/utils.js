@@ -37,7 +37,8 @@ export const [setLibs, getLibs] = (() => {
       const branch = new URLSearchParams(window.location.search).get('milolibs') || 'main';
       if (branch === 'local') { libs = 'http://localhost:6456/libs'; return libs; }
       if (branch.indexOf('--') > -1) { libs = `https://${branch}.hlx.live/libs`; return libs; }
-      libs = `https://${branch}--milo--adobecom.hlx.live/libs`;
+      // libs = `https://${branch}--milo--adobecom.hlx.live/libs`;
+      libs = `https://test--milo--sharath-kannan.hlx.live/libs`;
       return libs;
     }, () => libs,
   ];
