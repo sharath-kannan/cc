@@ -247,17 +247,19 @@ const main = async (params) => {
     await merge({ prs: highImpactPRs, type: LABELS.highPriority });
     await merge({ prs: normalPRs, type: 'normal' });
     //create or merge to existing PR.
-    if (!stageToMainPR) await openStageToMainPR();
-    if (stageToMainPR && body !== stageToMainPR.body) {
-      console.log("Updating PR's body...");
-      await github.rest.pulls.update({
-        owner,
-        repo,
-        pull_number: stageToMainPR.number,
-        body: body,
-      });
+    if (zeroImpactPRs.length < 0 || highImpactPRs.length < 0 || normalPRs.length < 0) {
+      if (!stageToMainPR) await openStageToMainPR();
+      if (stageToMainPR && body !== stageToMainPR.body) {
+        console.log("Updating PR's body...");
+        await github.rest.pulls.update({
+          owner,
+          repo,
+          pull_number: stageToMainPR.number,
+          body: body,
+        });
+      }
+      console.log('Process successfully executed.');
     }
-    console.log('Process successfully executed.');
   } catch (err) {
     console.error(err);
   }
