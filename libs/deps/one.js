@@ -1,1 +1,1 @@
-console.log("one.js 1")
+console.log('one.js 1');
