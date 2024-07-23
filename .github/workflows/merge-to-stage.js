@@ -247,7 +247,7 @@ const main = async (params) => {
     await merge({ prs: highImpactPRs, type: LABELS.highPriority });
     await merge({ prs: normalPRs, type: 'normal' });
     //create or merge to existing PR.
-    if (zeroImpactPRs.length < 0 || highImpactPRs.length < 0 || normalPRs.length < 0) {
+    if (zeroImpactPRs.length > 0 || highImpactPRs.length > 0 || normalPRs.length > 0) {
       if (!stageToMainPR) await openStageToMainPR();
       if (stageToMainPR && body !== stageToMainPR.body) {
         console.log("Updating PR's body...");
