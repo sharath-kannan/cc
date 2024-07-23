@@ -3,7 +3,8 @@ const PROD = 'main-mock';
 const PR_TITLE = '[Release] Stage to Main';
 const SEEN = {};
 let github, owner, repo;
-let body = `**Creative cloud:**
+let body = `
+**Creative cloud:**
 - Before: https://${PROD}--cc--adobecom.hlx.live/?martech=off
 - After: https://${STAGE}--cc--adobecom.hlx.live/?martech=off
 `;
