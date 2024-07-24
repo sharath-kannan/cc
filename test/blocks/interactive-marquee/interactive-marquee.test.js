@@ -9,7 +9,7 @@ describe('interactive marquee', () => {
   const im = document.querySelector('.interactive-marquee');
   before(async () => {
     setLibs('https://milo.adobe.com/libs');
-    console.log('interactive');
+    console.log('interactive 1');
     await init(im);
   });
 
